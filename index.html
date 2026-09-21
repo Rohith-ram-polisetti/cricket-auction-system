@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket Player Auction Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="floodlights" aria-hidden="true"></div>
+
+<header class="topbar">
+  <h1><span class="live-dot"></span>Auction<span class="accent">House</span> &mdash; Cricket Player Management</h1>
+  <nav class="tabs">
+    <button data-view="live" class="active">Live Auction</button>
+    <button data-view="players">Players</button>
+    <button data-view="teams">Teams</button>
+    <button data-view="squads">Squads / Contracts</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ LIVE AUCTION VIEW ============ -->
+  <section id="view-live" class="view active">
+
+    <div class="panel">
+      <h2>Auction Session</h2>
+      <div class="grid-form" style="grid-template-columns: 2fr 1fr;">
+        <select id="auctionSelect"></select>
+        <button class="btn secondary" id="newAuctionBtn">+ New Auction</button>
+      </div>
+    </div>
+
+    <div class="scoreboard" id="scoreboard">
+      <p class="empty-state">Select an auction, then pick a player below to start bidding.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Unsold Player Pool</h2>
+      <table id="poolTable">
+        <thead><tr><th>Name</th><th>Role</th><th>Category</th><th>Base Price</th><th>Status</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Team Purse Status</h2>
+      <div class="purse-strip" id="purseStrip"></div>
+    </div>
+
+  </section>
+
+  <!-- ============ PLAYERS VIEW (CRUD) ============ -->
+  <section id="view-players" class="view">
+    <div class="panel">
+      <h2>Add Player</h2>
+      <form id="playerForm" class="grid-form">
+        <input name="name" placeholder="Full name" required>
+        <input name="country" placeholder="Country" required>
+        <select name="role" required>
+          <option value="">Role</option>
+          <option>Batsman</option>
+          <option>Bowler</option>
+          <option>All-Rounder</option>
+          <option>Wicketkeeper</option>
+        </select>
+        <input name="experience" type="number" placeholder="Experience (yrs)" min="0">
+        <select name="category_id" id="categorySelectPlayer"><option value="">Category</option></select>
+        <input name="base_price" type="number" placeholder="Base price" min="0" step="0.01" required>
+        <button class="btn" type="submit">Add Player</button>
+      </form>
+      <div id="playerFormMsg"></div>
+    </div>
+
+    <div class="panel">
+      <h2>All Players</h2>
+      <table id="playersTable">
+        <thead><tr><th>ID</th><th>Name</th><th>Country</th><th>Role</th><th>Category</th><th>Base Price</th><th>Status</th><th>Team</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ TEAMS VIEW (CRUD) ============ -->
+  <section id="view-teams" class="view">
+    <div class="panel">
+      <h2>Add Team</h2>
+      <form id="teamForm" class="grid-form">
+        <input name="team_name" placeholder="Team name" required>
+        <input name="owner" placeholder="Owner">
+        <input name="purse_total" type="number" placeholder="Purse total" min="0" step="0.01" required>
+        <button class="btn" type="submit">Add Team</button>
+      </form>
+      <div id="teamFormMsg"></div>
+    </div>
+
+    <div class="panel">
+      <h2>All Teams</h2>
+      <table id="teamsTable">
+        <thead><tr><th>ID</th><th>Team Name</th><th>Owner</th><th>Purse Total</th><th>Purse Remaining</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ SQUADS / CONTRACTS VIEW ============ -->
+  <section id="view-squads" class="view">
+    <div class="panel">
+      <h2>Final Contracts</h2>
+      <table id="contractsTable">
+        <thead><tr><th>Player</th><th>Role</th><th>Team</th><th>Sold In</th><th>Final Price</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>Cricket Player Auction Management System &mdash; PostgreSQL + Express + Vanilla JS</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
